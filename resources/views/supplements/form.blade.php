@@ -169,7 +169,7 @@
                 >
 
                 <div class="invalid-feedback">
-                    Please provide a valid Img URL.
+                    Please provide a
                 </div>
 
             </div>
