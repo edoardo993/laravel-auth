@@ -39,17 +39,17 @@
                     <td>
                         <a href="{{route('supplements.show', compact('supplement'))}}">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-eye"></i>
+                                INFO
                             </button>
                         </a>
                         <a href="{{route('supplements.edit', compact('supplement'))}}">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-edit"></i>
+                                EDIT
                             </button>
                         </a>
 
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter{{$supplement->id}}">
-                            <i class="fas fa-trash-alt"></i>
+                            DELETE
                         </button>
 
                         <!-- Modal -->
