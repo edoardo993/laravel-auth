@@ -20,8 +20,6 @@
 
         <form action="{{$url}}"
                 method="post"
-                class="needs-validation"
-                novalidate
                 name="invio"
         >
 
@@ -36,7 +34,6 @@
                         class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
                         name="name"
                         placeholder="Name"
-                        required
                         value="{{isset($supplement) ? $supplement->name : ''}}"
                 >
 
@@ -52,7 +49,7 @@
 
                 <input type="text"
                         name="brand"
-                        class="form-control"
+                        class="form-control {{ $errors->has('brand') ? 'is-invalid' : '' }}"
                         placeholder="Brand"
                         required
                         value="{{isset($supplement) ? $supplement->brand : ''}}"
@@ -60,7 +57,7 @@
                 >
 
                 <div class="invalid-feedback">
-                    Please provide a valid brand.
+                    {{$errors->first('brand')}}
                 </div>
 
             </div>
@@ -71,7 +68,7 @@
 
                 <input type="text"
                         name="ingredients"
-                        class="form-control"
+                        class="form-control {{ $errors->has('ingredients') ? 'is-invalid' : '' }}"
                         placeholder="Ingredients"
                         required
                         value="{{isset($supplement) ? $supplement->ingredients : ''}}"
@@ -79,7 +76,7 @@
                 >
 
                 <div class="invalid-feedback">
-                    Please provide valid ingredients.
+                    {{$errors->first('ingredients')}}
                 </div>
 
             </div>
@@ -90,14 +87,14 @@
 
                 <input type="text"
                         name="quantity"
-                        class="form-control"
+                        class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}"
                         placeholder="Quantity"
                         required
                         value="{{isset($supplement) ? $supplement->quantity : ''}}"
                 >
 
                 <div class="invalid-feedback">
-                    Please provide a valid quantity.
+                    {{$errors->first('quantity')}}
                 </div>
 
             </div>
@@ -108,14 +105,14 @@
 
                 <input type="text"
                         name="description"
-                        class="form-control"
+                        class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
                         placeholder="Description"
                         required
                         value="{{isset($supplement) ? $supplement->description : ''}}"
                 >
 
                 <div class="invalid-feedback">
-                    Please provide a valid description.
+                    {{$errors->first('description')}}
                 </div>
 
             </div>
@@ -126,14 +123,14 @@
 
                 <input type="text"
                         name="use"
-                        class="form-control"
+                        class="form-control {{ $errors->has('use') ? 'is-invalid' : '' }}"
                         placeholder="Use"
                         required
                         value="{{isset($supplement) ? $supplement->use : ''}}"
                 >
 
                 <div class="invalid-feedback">
-                    Please provide a valid use.
+                    {{$errors->first('use')}}
                 </div>
 
             </div>
@@ -144,14 +141,14 @@
 
                 <input type="text"
                         name="price"
-                        class="form-control"
+                        class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
                         placeholder="Price"
                         required
                         value="{{isset($supplement) ? $supplement->price : ''}}"
                 >
 
                 <div class="invalid-feedback">
-                    Please provide a valid price.
+                    {{$errors->first('price')}}
                 </div>
 
             </div>
@@ -162,19 +159,19 @@
 
                 <input type="text"
                         name="img_url"
-                        class="form-control"
+                        class="form-control {{ $errors->has('img_url') ? 'is-invalid' : '' }}"
                         placeholder="Img URL"
                         required
                         value="{{isset($supplement) ? $supplement->img_url : ''}}"
                 >
 
                 <div class="invalid-feedback">
-                    Please provide a
+                    {{$errors->first('img_url')}}
                 </div>
 
             </div>
 
-            <input type="submit" value=" {{isset($supplement) ? 'update' : 'add' }}" onclick="validation()" class="submit-btn-add">
+            <input type="submit" value=" {{isset($supplement) ? 'update' : 'add' }}" class="submit-btn-add">
 
         </form>
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/supplements', 'MainController');
+// Route::resource('supplements', 'MainController')->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/supplements', 'PublicController@index')->name('public-index');
+
+Route::get('/supplements/{supplement}', 'PublicController@show')->name('public-show');
+
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->middleware('auth')
+    ->group(function (){
+        Route::resource('/supplements', MainController::class);
+});

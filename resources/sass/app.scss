@@ -102,3 +102,13 @@ body {
     font-size: 25px;
     text-transform: uppercase;
   }
+.log-in-button{
+    position: fixed;
+    top: 70px;
+    right: 400px;
+    z-index: 1000000
+}
+.btn.btn-light{
+    background-color: orange;
+    border: none
+}

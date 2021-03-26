@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
 use App\Supplement;
+
+use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
@@ -15,8 +17,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        $supplements = Supplement::all();
-        return view('supplements.index', compact('supplements'));
+        return redirect()->route('public-index');
     }
 
     /**
@@ -26,7 +27,7 @@ class MainController extends Controller
      */
     public function create()
     {
-        return view('supplements.create');
+        return view('supplements.private.create');
     }
 
     /**
@@ -46,29 +47,30 @@ class MainController extends Controller
         $supplement->save();
 
         $supplementStored = Supplement::orderBy('id', 'DESC')->first();
-        return redirect()->route('supplements.show', $supplementStored);
+        return redirect()->route('public-index', $supplementStored);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Supplement  $supplement
      * @return \Illuminate\Http\Response
      */
     public function show(Supplement $supplement)
     {
-        return view('supplements.show', compact('supplement'));
+        return redirect()->route('public-show', compact('supplement'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Supplement  $supplement
      * @return \Illuminate\Http\Response
      */
     public function edit(Supplement $supplement)
     {
-        return view('supplements.edit', compact('supplement'));
+        return view('supplements.private.edit', compact('supplement'));
     }
 
     /**
@@ -83,7 +85,7 @@ class MainController extends Controller
         $this->validateForm($request);
         $data = $request->all();
         $supplement->update($data);
-        return redirect()->route('supplements.show', compact('supplement'));
+        return redirect()->route('public-index', compact('supplement'));
     }
 
     /**
@@ -95,7 +97,7 @@ class MainController extends Controller
     public function destroy(Supplement $supplement)
     {
         $supplement->delete();
-        return redirect()->route('supplements.index');
+        return redirect()->route('public-index');
     }
 
     protected function validateForm(Request $request){

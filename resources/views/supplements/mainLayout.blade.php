@@ -10,6 +10,20 @@
 </head>
 <body>
 
+    @if (!Auth::check())
+        <a class="btn btn-light log-in-button" href="/login">Login</a>
+            @else
+                <div class="btn btn-light log-in-button" aria-labelledby="navbarDropdown">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+    @endif
+
     <header class="header">
 
         <nav class="nav-bar">
@@ -17,8 +31,12 @@
             <ul class="nav-list">
                 <li class="nav-list-item"><a href="/">home</a></li>
                 <li class="nav-list-item"><a href="/supplements">all supplements</a></li>
-                <li class="nav-list-item"><a href="/supplements/create">add supplement</a></li>
-                <li class="nav-list-item"><a href="/supplements">update supplement</a></li>
+                <li class="nav-list-item"><a href="/admin/supplements/create">add supplement</a></li>
+                <li class="nav-list-item">
+                    @if(!Auth::check())
+                        <a href="/admin/supplements">update supplement</a>
+                    @endif
+                </li>
             </ul>
 
         </nav>
